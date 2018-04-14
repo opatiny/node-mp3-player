@@ -1,11 +1,11 @@
 'use strict';
 
-const delay = require('delay');
+const delay = require('delay'); // for delays (async)
 const {
   MPlayer
-} = require('mplayer-as-promised');
+} = require('mplayer-as-promised'); // to play, pause, get remaining time of a tune
 
-const MP3_FOLDER = `${__dirname}/../mp3/`;
+const MP3_FOLDER = `${__dirname}/../mp3/`; // mp3 database path (relative)
 
 const appendInfo = require('./util/appendInfo');
 const showTime = require('./util/showTime');

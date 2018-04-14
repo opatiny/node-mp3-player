@@ -28,3 +28,5 @@ var alphabet = {
     Y: 01000111,
     Z: 11011010
 };
+
+module.exports = alphabet;
