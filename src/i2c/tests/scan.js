@@ -1,5 +1,4 @@
-const I2C = require('i2c-bus');
-const i2c = I2C.openSync(1);
+const i2c = require('i2c-bus').openSync(1);
 
 scan(i2c);
 
