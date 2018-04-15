@@ -7,13 +7,12 @@ const delay=require('delay');
 
 
 const pcas=initPCAs(i2c,0,14);
-resetPCAs(pcas);
 
 test();
 
 function test () {
-    for (let i=0; i<10; i++) {
-        allOnPCAs(pcas);
+    for (let i=0; i<100; i++) {
+        allDimmedPCAs(pcas, 10);
         allOffPCAs(pcas);
     }
 }
@@ -47,26 +46,23 @@ function initPCAs(bus, from ,to) {
     return pcas;
 }
 
-function resetPCAs(pcas) {
+function allOnPCAs(pcas) {
     for (let pca of pcas) {
-        pca.reset();
+        pca.on();
     }
 }
 
-function allOnPCAs(pcas) {
+function allDimmedPCAs(pcas, intensity) {
     for (let pca of pcas) {
-        pca.allOn();
+        pca.dimmed(intensity);
     }
 }
 
 function allOffPCAs(pcas) {
     for (let pca of pcas) {
-        pca.allOff();
+        pca.off();
     }
 }
-
-
-
 
 function scan(bus) {
     let devices = bus.scanSync();

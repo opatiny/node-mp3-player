@@ -8,65 +8,47 @@ const delay=require('delay');
 function PCA9865(bus, id) {
     this.bus=bus;
     this.id=id | BASE_ADDRESS; 
+    this.init();
 }
 
-
-PCA9865.prototype.reset=function() {
+/** 
+ * Reset the devices, set as output and auto increment the register pointer
+*/
+PCA9865.prototype.init=function() {
     this.bus.writeByteSync(this.id, PCA9685_MODE2, 0x01); // reset
     this.bus.writeByteSync(this.id, PCA9685_MODE1, 0b10100000);	// set up for auto increment
     this.bus.writeByteSync(this.id, PCA9685_MODE2, 0b00000100);// set to output
 }
 
-PCA9865.prototype.allOn=function() {
+PCA9865.prototype.on=function(mask = 0xFFFF) {
     for (let i=0; i<16; i++) {
-        this.setOnOff(i, 0, 0x1000);
+        if (mask & 1<<i) {
+            this.setOnOff(i, 0, 0x0FFF);
+        }
     }
 }
 
-PCA9865.prototype.allOff=function() {
+PCA9865.prototype.off=function(mask = 0xFFFF) {
     for (let i=0; i<16; i++) {
-        this.setOnOff(i, 0x1000, 0);
+        if (mask & 1<<i) {
+            this.setOnOff(i, 0x0FFF, 0);
+        }
     }
 }
 
+PCA9865.prototype.dimmed=function(value = 2047, mask = 0xFFFF) {
+    for (let i=0; i<16; i++) {
+        if (mask & 1<<i) {
+            let phaseShift = Math.floor(Math.random()*4096); // Randomize the phaseshift to distribute load. Good idea? Hope so.
+            this.setOnOff(i, phaseShift, (phaseShift + value));
+        }
+    }
+}
 
 PCA9865.prototype.setOnOff=function(i, on, off) {
+    on = on % 4096;
+    off = off % 4096;
     this.bus.writeI2cBlockSync(this.id, 0x06+i*4, 4, Buffer.from([on & 0xff, on>>8, off & 0xff, off>>8]));
 }
 
-PCA9865.prototype.allDimmed=function(value) {
-    for (let i=0; i<16; i++) {
-        let randNumber = Math.floor(Math.random()*4096); // Randomize the phaseshift to distribute load. Good idea? Hope so.
-        this.bus.writeI2cBlockSync(this.id, 0x06+i*4, 4, Buffer.from([0x00, 0x00, 0xFF, 0x3F]));
-    }
-}
-
-
-function ledOn(i2c, ledNumber) {
-    for (let i=0; i<NUMBER_DEVICES; i++) {
-        i2c.sendByteSync(i+BASE_ADDRESS, 0x01);
-    }
-}
-
-
 module.exports=PCA9865;
-
-/*
-function writeLED(i2c, on, off) {
-    Wire.beginTransmission(_i2cAddress);
-    Wire.write(PCA9685_LED0 + 4*ledNumber);
-
-    Wire.write(lowByte(LED_ON));
-    Wire.write(highByte(LED_ON));
-    Wire.write(lowByte(LED_OFF));
-    Wire.write(highByte(LED_OFF));
-    
-    Wire.endTransmission();
-}
-
-writeRegister(PCA9685_MODE1, (byte)0x01);	
-
-writeI2cBlockSync
-
-*/
-
