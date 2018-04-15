@@ -11,11 +11,11 @@ const pcas=createPCAs(i2c,0,14);
 test();
 
 function test () {
-    for (let i=0; i<100; i++) {
-        for (let intensity=0; intensity<4095; intensity+=500) {
+    for (let i=0; i<5; i++) {
+        for (let intensity=0; intensity<200; intensity+=10) {
             allDimmedPCAs(pcas, intensity);
         }
-        for (let intensity=4000; intensity>=0; intensity-=500) {
+        for (let intensity=200; intensity>=0; intensity-=10) {
             allDimmedPCAs(pcas, intensity);
         }
     }
