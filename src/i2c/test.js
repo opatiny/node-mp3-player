@@ -19,25 +19,6 @@ function test () {
 
 
 
-return;
-
-
-while (true) {
-    readParameters();
-}
-
-function readParameters() {
-    let luminosity=i2c.readWordSync(8, 0);
-    let temperature=i2c.readWordSync(8, 1);
-    let switchState=i2c.readWordSync(8, 2);
-    let card=(i2c.readWordSync(8, 5)<<16) + i2c.readWordSync(8, 6)
-    if (card<0) card+=2**31;
-
-    console.log(luminosity, temperature, switchState, card.toString(16));
-}
-
-
-
 function initPCAs(bus, from ,to) {
     let pcas=[];
     for (let i=from; i<=to; i++) {
@@ -61,12 +42,5 @@ function allDimmedPCAs(pcas, intensity) {
 function allOffPCAs(pcas) {
     for (let pca of pcas) {
         pca.off();
-    }
-}
-
-function scan(bus) {
-    let devices = bus.scanSync();
-    for (let device of devices) {
-        console.log(device);
     }
 }
