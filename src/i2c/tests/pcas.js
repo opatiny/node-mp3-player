@@ -34,7 +34,7 @@ function allOnPCAs(pcas) {
 
 function allDimmedPCAs(pcas, intensity) {
     for (let pca of pcas) {
-        pca.dim(intensity);
+        pca.dim(intensity, 0x00FF);
     }
 }
 

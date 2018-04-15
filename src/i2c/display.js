@@ -9,10 +9,10 @@ const LINES = [
 ];
 
 function Display(bus) {
-    this.intensity=100;
+    this.intensity=100; // default intensity
     this.bus=bus;
     this.lines=LINES.map( 
-        LINE => LINE.map( id => new PCA9685(this.bus, id))
+        line => line.map( id => new PCA9685(this.bus, id))
     );
 }
 
@@ -27,6 +27,19 @@ Display.prototype.on=function(line = 0) {
 }
 
 Display.prototype.off=function(line = 0) {
+    for (let pca of this.lines[line]) {
+        pca.off();
+    }
+}
+
+Display.prototype.setText=function(text, options={}) {
+    const {
+        line = 0,
+        overflow = 0,
+    } = options;
+    
+
+    
     for (let pca of this.lines[line]) {
         pca.off();
     }
