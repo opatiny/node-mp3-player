@@ -48,7 +48,7 @@ PCA9865.prototype.off=function(mask = 0xFFFF) {
  * @param {number} [intensity=2047] Intensity (value between 0 and 4095)
  * @param {number} [mask=0xFFFF] Mask reprensets the output to change, by default all (0xFFFF).
  */
-PCA9865.prototype.dimmed=function(intensity = 2047, mask = 0xFFFF) {
+PCA9865.prototype.dim=function(intensity = 2047, mask = 0xFFFF) {
     intensity = Math.max(0, Math.min(intensity, 4095));
     for (let i=0; i<16; i++) {
         if (mask & 1<<i) {

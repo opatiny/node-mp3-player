@@ -1,16 +1,13 @@
-const I2C = require('i2c-bus');
-const i2c = I2C.openSync(1);
+const i2c = require('i2c-bus').openSync(1);
 
 const PCA9685 = require('../pca9685.js');
 const delay=require('delay');
-// scan(i2c);
-
 
 const pcas=createPCAs(i2c,0,14);
 
 test();
 
-function test () {
+function test() {
     for (let i=0; i<5; i++) {
         for (let intensity=0; intensity<200; intensity+=10) {
             allDimmedPCAs(pcas, intensity);
@@ -20,8 +17,6 @@ function test () {
         }
     }
 }
-
-
 
 function createPCAs(bus, from ,to) {
     let pcas=[];
@@ -39,7 +34,7 @@ function allOnPCAs(pcas) {
 
 function allDimmedPCAs(pcas, intensity) {
     for (let pca of pcas) {
-        pca.dimmed(intensity);
+        pca.dim(intensity);
     }
 }
 
