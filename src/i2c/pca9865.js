@@ -48,12 +48,12 @@ PCA9865.prototype.off=function(mask = 0xFFFF) {
  * @param {number} [intensity=2047] Intensity (value between 0 and 4095)
  * @param {number} [mask=0xFFFF] Mask reprensets the output to change, by default all (0xFFFF).
  */
-PCA9865.prototype.dimmed=function(intensty = 2047, mask = 0xFFFF) {
+PCA9865.prototype.dimmed=function(intensity = 2047, mask = 0xFFFF) {
     intensity = Math.max(0, Math.min(intensity, 4095));
     for (let i=0; i<16; i++) {
         if (mask & 1<<i) {
             let phaseShift = Math.floor(Math.random()*4096); // Randomize the phaseshift to distribute load. Good idea? Hope so.
-            this.setOnOff(i, phaseShift, (phaseShift + intensty));
+            this.setOnOff(i, phaseShift, (phaseShift + intensity));
         }
     }
 }
