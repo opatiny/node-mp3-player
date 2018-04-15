@@ -1,6 +1,6 @@
 'use strict';
 
-const alphabet = require('./alphabet.js');
+const getCode = require('./alphabet.js').getCode;
 
 const BASE_ADDRESS=0b1000000;
 const PCA9685_MODE1=0x00; // location for Mode1 register address
@@ -75,12 +75,13 @@ PCA9865.prototype.setTwoChars=function(text, intensity = 2047) {
     let char1=text.charAt(0);
     let char2=text.charAt(1);
     if (char1) {
-        mask+=alphabet[char1];
+        mask+=getCode(char1);
     }
     if (char2) {
-        mask+=alphabet[char2]<<8;
+        mask+=getCode(char2)<<8;
     }
     this.dim(intensity, mask);
+    this.off(mask ^ 0xFFFF );
 }
 
 module.exports=PCA9865;

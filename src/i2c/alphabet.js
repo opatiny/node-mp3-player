@@ -31,4 +31,17 @@ var alphabet = {
     
 };
 
-module.exports = alphabet;
+function getCode(char) {
+    let code = alphabet[char];
+    let newCode = 0; // we invert the order of the bits
+    for (let i=0; i<8; i++) {
+        let isBitSet = (code & (1 << i)) >> i;
+        newCode += isBitSet << (7 - i);
+    }
+    return newCode;
+}
+
+module.exports = {
+    alphabet,
+    getCode
+}

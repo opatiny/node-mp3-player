@@ -33,15 +33,24 @@ Display.prototype.off=function(line = 0) {
 }
 
 Display.prototype.setText=function(text, options={}) {
-    const {
+    let {
         line = 0,
         overflow = 0,
     } = options;
     
-
-    
-    for (let pca of this.lines[line]) {
-        pca.off();
+    let pos=0;
+    for (let i=0; i<text.length; i+=2) {
+        let pca=this.lines[line][pos++];
+        if (! pca && overflow > 0) {
+            line++;
+            overflow--;
+            pos=0;
+            pca=this.lines[line][pos++];
+        }
+        if (pca) {
+            pca.setTwoChars(text.substr(i, 2), this.intensity);
+        }
+        
     }
 }
 
