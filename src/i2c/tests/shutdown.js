@@ -5,7 +5,7 @@ const CardReader = require('../cardReader.js');
 
 const cardReader = new CardReader(i2c);
 
-const Shutdown = require('shutdown');
+const exec = require('child_process').exec;
 
 
 
@@ -19,8 +19,8 @@ async function read() {
         console.log(status);
         await delay(500);
 	if (status.switchState===0) {
-		if ((Date.now()-lastZero) > 10000) {
-			Shutdown.shutdownGracefully();
+		if ((Date.now()-lastZero) > 5000) {
+			exec('shutdown -h now');
 		}
 	} else {
 		lastZero=Date.now();

@@ -26,6 +26,12 @@ Display.prototype.on=function(line = 0) {
     }
 }
 
+Display.prototype.clear=function() {
+    for (let line = 0; line<this.lines.length; line++) {
+        this.off(line);
+    }
+}
+
 Display.prototype.off=function(line = 0) {
     for (let pca of this.lines[line]) {
         pca.off();
