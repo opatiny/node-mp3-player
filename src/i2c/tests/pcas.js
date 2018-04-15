@@ -1,7 +1,7 @@
 const I2C = require('i2c-bus');
 const i2c = I2C.openSync(1);
 
-const PCA9865 = require('../pca9865.js');
+const PCA9685 = require('../pca9685.js');
 const delay=require('delay');
 // scan(i2c);
 
@@ -26,7 +26,7 @@ function test () {
 function createPCAs(bus, from ,to) {
     let pcas=[];
     for (let i=from; i<=to; i++) {
-        pcas.push(new PCA9865(bus, i));
+        pcas.push(new PCA9685(bus, i));
     }
     return pcas;
 }
