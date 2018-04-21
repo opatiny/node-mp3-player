@@ -14,9 +14,8 @@ function CardReader(bus) {
   this.bus = bus;
 }
 
-
 // push I2C parameters to CardReader.prototype.status
-CardReader.prototype.status = function (i, on, off) { // why does the function accept these parameters?
+CardReader.prototype.status = function () {
   // require cardReader parameters through I2C
   let luminosity = this.bus.readWordSync(ADDRESS, 0);
   let temperature = this.bus.readWordSync(ADDRESS, 1);

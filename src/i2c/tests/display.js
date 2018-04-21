@@ -24,6 +24,5 @@ async function test() {
     }
 }
 
-
 display.setText('ABCDEFGHIJKL');
 await delay(100);

@@ -15,7 +15,6 @@ const CardReader = require('../cardReader.js');
 // create new instance of cardReader
 const cardReader = new CardReader(i2c);
 
-
 read();
 
 async function read() {
