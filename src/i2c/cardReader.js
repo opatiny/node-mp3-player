@@ -26,6 +26,15 @@ CardReader.prototype.status = function () {
   card = card.padStart(8, '0'); // fill with '0' in front if not 8 characters
   card = `${card.substr(0, 4)}-${card.substr(4, 4)}`;
 
+  /*
+  syntax allowing multi-line string with variable insertion
+  let a = `ma carte est ${card} asdfasdf
+  asdf
+  asdf
+  asdf
+  `;
+  */
+
   return {
     luminosity,
     temperature,

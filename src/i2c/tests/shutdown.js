@@ -4,7 +4,7 @@
 
 
 // require libraries
-const exec = require('child_process').exec;
+const exec = require('child_process').exec; // library that allows to execute bash
 
 const debug = require('debug')('i2c:test/shutdown'); // debug library
 const i2c = require('i2c-bus').openSync(1);
