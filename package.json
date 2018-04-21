@@ -40,10 +40,11 @@
     "rollup": "^0.57.1"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
+    "debug": "^3.1.0",
     "delay": "^2.0.0",
     "i2c-bus": "^3.1.0",
     "mplayer-as-promised": "0.0.6",
-    "shutdown": "^0.3.0",
     "spawn-promise": "^0.1.8",
     "through": "^2.3.8"
   }
