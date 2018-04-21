@@ -17,7 +17,7 @@ const cardReader = new CardReader(i2c);
 showID();
 
 async function showID() {
-  for (let i = 0; i < 10; i++) {
+  while (true) {
     display.setIntensity(Math.floor(Math.random() * 500));
     display.setText(cardReader.status().card, {
       line: 0,
