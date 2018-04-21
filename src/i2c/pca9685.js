@@ -74,7 +74,7 @@ PCA9865.prototype.setOnOff = function (i, on, off) {
 };
 
 PCA9865.prototype.setTwoChars = function (text, intensity = 2047) {
-  text = text.toUpperCase().replace(/[^A-Z0-9 ]/g, '');
+  text = text.toUpperCase().replace(/[^A-Z0-9 -]/g, '');
   let mask = 0;
   let char1 = text.charAt(0);
   let char2 = text.charAt(1);

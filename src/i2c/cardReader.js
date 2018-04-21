@@ -25,7 +25,6 @@ CardReader.prototype.status = function () {
   card = card.toString(16); // create a string in base 16
   card = card.padStart(8, '0'); // fill with '0' in front if not 8 characters
   card = `${card.substr(0, 4)}-${card.substr(4, 4)}`;
-
   return {
     luminosity,
     temperature,

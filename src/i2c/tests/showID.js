@@ -18,7 +18,7 @@ showID();
 
 async function showID() {
   while (true) {
-    display.setIntensity(Math.floor(Math.random() * 500));
+    display.setIntensity(10);
     display.setText(cardReader.status().card, {
       line: 0,
       overflow: 2
