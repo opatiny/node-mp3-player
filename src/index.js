@@ -27,7 +27,7 @@ const I2C = require('i2c-bus');
 // connect on I2C bus 1
 var i2c;
 try {
-  i2c = I2C.openSync(1);
+  i2c = I2C.openSync(1); // Synchronous open. Returns a new Bus object.
 } catch (e) {
   debug('i2c bus error', e.toString());
 }
