@@ -30,14 +30,8 @@ async function displayInfo() {
       display.setText(toc[cardID][0].title, { line: 1 });
       await delay(100);
     } else {
-      allOff();
+      display.allOff();
     }
   }
 }
 
-async function allOff() {
-  for (let line = 0; line < 3; line++) {
-    display.off(line);
-  }
-  await delay(100);
-}
