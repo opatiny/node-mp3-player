@@ -18,16 +18,16 @@ const display = new Display(i2c);
 displayInfo();
 
 async function displayInfo() {
-  var cardID = toc[cardReader.status().card];
+  var cardID = cardReader.status().card;
   display.setIntensity(200);
 
   while (true) {
     debug('cardID:  ', cardID);
 
     if (cardID !== 0) {
-      display.setText(cardID.author, { line: 0 });
+      display.setText(toc[cardID][0].author, { line: 0 });
 
-      display.setText(cardID.title, { line: 1 });
+      display.setText(toc[cardID][0].title, { line: 1 });
       await delay(100);
     } else {
       allOff();

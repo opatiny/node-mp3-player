@@ -3,6 +3,8 @@
 'use strict';
 
 // fs for file system: allows to access and edit files on disk
+const debug = require('debug')('util:loadTOC'); // debug library
+
 const fs = require('fs');
 
 const MP3RF_FOLDER = `${__dirname}/../../mp3rf`; // royality free
@@ -14,6 +16,7 @@ append(MP3RF_FOLDER);
 append(MP3_FOLDER);
 
 module.exports = toc;
+debug(toc);
 
 function append(path) {
   if (fs.existsSync(path)) { // verifing if path exists
