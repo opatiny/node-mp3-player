@@ -6,5 +6,9 @@ const debug = require('debug')('util:test/displayInfo'); // debug library
 
 const toc = require('../loadTOC');
 
-console.log(Object.keys(toc));
+for (let key of Object.keys(toc)) {
+  console.log(toc[key][0].author, toc[key][0].title);
+}
+
+// console.log(Object.keys(toc));
 
