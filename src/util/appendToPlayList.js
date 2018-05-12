@@ -9,6 +9,20 @@ module.exports = async function appendToPlayList(context) {
   if (context.lastAddedCard !== card) { // verify wether card has changed
     context.lastAddedCard = card;
 
+    switch (context.cardReaderStatus.switchState) {
+      case 3:
+        card = 'ffffffff';
+        // eslint-disable-next-line
+      case 2:
+        if (context.item) {
+          await context.item.stop();
+        }
+        context.playlist = [];
+        break;
+      default:
+    }
+
+
     if (context.toc[card]) { // if card exists in TOC
       context.playlist.push(...context.toc[card]); // push all elements of array to playlist array (the '...' syntax)
     } else {

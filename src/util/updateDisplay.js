@@ -1,8 +1,7 @@
 // function showing 'waiting' or 'playing' on ledDisplay
+'use strict';
 
 const debug = require('debug')('util:updateDisplay'); // debug library
-
-'use strict';
 
 module.exports = function updateDisplay(context) {
   debug(context.currentMusic);
