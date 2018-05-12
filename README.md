@@ -3,9 +3,8 @@
   [![NPM version][npm-image]][npm-url]
   [![build status][travis-image]][travis-url]
   [![Test coverage][codecov-image]][codecov-url]
-  [![npm download][download-image]][download-url]
 
-mp3 player in node.
+JavaScript program for a steampunk MP3 player.
 
 ## Installation
 
