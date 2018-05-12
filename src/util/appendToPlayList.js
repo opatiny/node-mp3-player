@@ -3,7 +3,7 @@
 const debug = require('debug')('util:appendToPlayList'); // debug library
 
 module.exports = async function appendToPlayList(context) {
-  let card = context.cardReaderStatus.card.replace('-','');
+  let card = context.cardReaderStatus.card.replace('-', '');
   debug('current card', card, 'last added card', context.lastAddedCard);
   if (!card) return;
   if (context.lastAddedCard !== card) { // verify wether card has changed
