@@ -4,8 +4,8 @@
 
 module.exports = function updateDisplay(context) {
   if (!context.item || !context.item.mplayer) {
-    context.display.setText('Waiting');
+    context.display.setText('Waiting'.pad(12));
   } else {
-    context.display.setText('Playing');
+    context.display.setText('Playing'.pad(12));
   }
 };
