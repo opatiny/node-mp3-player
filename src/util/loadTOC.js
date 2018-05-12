@@ -33,8 +33,9 @@ function append(path) {
 
 // function to add file to object with card unique key as property name
 function addFile(path, file) {
-  let key = file.substr(0, 9);
-  let realFile = file.substr(10);
+  let key = file.substr(0, 9).replace(/[ -]/, '');
+  let realFile = file.substr(9).replace(/^_/, '');
+
   toc[key] = [
     {
       file: `${path}/${file}`,
@@ -46,7 +47,7 @@ function addFile(path, file) {
 
 // funciton to add a directory to the toc
 function addDirectory(path, dirname) {
-  let key = dirname;
+  let key = dirname.replace(/[^a-fA-F0-9-].*/, '').replace('-', '');
   path = `${path}/${dirname}`; // path is a string
   toc[key] = [];
   let files = fs.readdirSync(path);
