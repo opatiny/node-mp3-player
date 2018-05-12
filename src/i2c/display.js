@@ -9,14 +9,15 @@ const PCA9685 = require('./pca9685.js');
 const LINES = [
   [0, 1, 2, 3, 4, 5],
   [6, 7, 8, 9, 10, 11],
-  [12, 13, 14]
+  [12, 13, 14, 15]
 ];
 
+// defining Display object
 function Display(bus) {
   this.intensity = 100; // default intensity
   this.bus = bus;
-  this.lines = LINES.map(
-    (line) => line.map((id) => new PCA9685(this.bus, id))
+  this.lines = LINES.map( // map applies to all elements of an array and returns an array
+    (line) => line.map((id) => new PCA9685(this.bus, id)) // creates all pCA9685 instances
   );
 }
 
@@ -50,7 +51,7 @@ Display.prototype.setText = function (text, options = {}) {
 
   let pos = 0;
   for (let i = 0; i < text.length; i += 2) {
-    let pca = this.lines[line][pos++];
+    let pca = this.lines[line][pos++]; // double square braquets bcause array of arrays
     if (!pca && overflow > 0) {
       line++;
       overflow--;

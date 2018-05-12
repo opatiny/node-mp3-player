@@ -24,8 +24,8 @@ async function read() {
     debug(status);
     await delay(500);
     if (status.switchState === 0) {
-      if ((Date.now() - lastZero) > 5000) {
-        exec('shutdown -h now');
+      if ((Date.now() - lastZero) > 5000) { // force button to be pressed for 5 seconds
+        exec('shutdown -h now'); // executes bash command
       }
     } else {
       lastZero = Date.now();

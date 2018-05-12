@@ -1,3 +1,5 @@
+// function allowing to know current time
+
 'use strict';
 
 module.exports = async function showTime(context) {

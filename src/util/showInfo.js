@@ -1,3 +1,5 @@
+// function that console logs information about a tune
+
 'use strict';
 
 module.exports = function showInfo(context) {

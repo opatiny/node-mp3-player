@@ -8,13 +8,13 @@ const debug = require('debug')('i2c:cardReader'); // debug library
 // slave I2C address
 const ADDRESS = 8;
 
-// define I2C bus
-function CardReader(bus) {
-  debug(this);
+// define CardReader object
+function CardReader(bus) { // to create new CardReader instance you need to call an I2C bus
+  debug('This of cardReader', this);
   this.bus = bus;
 }
 
-// push I2C parameters to CardReader.prototype.status
+// push I2C parameters to CardReader.prototype.status, status is a function common to all CardReader instances
 CardReader.prototype.status = function () {
   // require cardReader parameters through I2C
   let luminosity = this.bus.readWordSync(ADDRESS, 0);
@@ -24,7 +24,7 @@ CardReader.prototype.status = function () {
   if (card < 0) card += 2 ** 31;
   card = card.toString(16); // create a string in base 16
   card = card.padStart(8, '0'); // fill with '0' in front if not 8 characters
-  card = `${card.substr(0, 4)}-${card.substr(4, 4)}`;
+  card = `${card.substr(0, 4)}-${card.substr(4, 4)}`; // four numbers then - then four other numbers
   return {
     luminosity,
     temperature,

@@ -1,4 +1,4 @@
-// main program running on the chip.
+// main program running on the CHIP.
 
 'use strict';
 
@@ -24,10 +24,10 @@ const updateCard = require('./util/updateCard');
 const mplayer = new MPlayer();
 const I2C = require('i2c-bus');
 
-// connect on I2C bus 1
+// connecting on I2C bus 1
 var i2c;
 try {
-  i2c = I2C.openSync(1); // Synchronous open. Returns a new Bus object.
+  i2c = I2C.openSync(1); // Synchronous open (not a promise). Returns a new Bus object.
 } catch (e) {
   debug('i2c bus error', e.toString());
 }
@@ -42,10 +42,10 @@ async function start() {
     item: {}, // pointer to the current mplayer item playing
     info: {}, // extracted info from the mp3
     toc, // list of all the files on the disk
-    lastAddedCard: '', // id of the card that was last added
-    cardReader: new CardReader(i2c),
+    lastAddedCard: '', // id of the card that was added at last
+    cardReader: new CardReader(i2c), // new cardReader instance
     cardInfo: {}, // information about the card
-    display: new Display(i2c),
+    display: new Display(i2c), // new ledDisplay instance
   };
 
   while (true) {
