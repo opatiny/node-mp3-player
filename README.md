@@ -1,4 +1,4 @@
-# Node program for a steampunk MP3 player.
+# Node program for a steampunk MP3 player
 
 ## License
 
