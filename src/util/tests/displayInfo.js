@@ -2,6 +2,7 @@
 
 'use strict';
 
+const debug = require('debug')('util:test/displayInfo'); // debug library
 const i2c = require('i2c-bus').openSync(1);
 const delay = require('delay');
 
@@ -14,24 +15,24 @@ const CardReader = require('../../i2c/cardReader');
 const cardReader = new CardReader(i2c); // new cardReader instance
 const display = new Display(i2c);
 
-
-while (true) {
-  if (cardReader.status.card !== 0) {
-    displayInfo();
-  } else {
-    allOff();
-  }
-}
+displayInfo();
 
 async function displayInfo() {
-  var cardID = toc[cardReader.status.card];
-
+  var cardID = toc[cardReader.status().card];
   display.setIntensity(200);
 
-  display.setText(cardID.author, { line: 0 });
+  while (true) {
+    debug('cardID:  ', cardID);
 
-  display.setText(cardID.title, { line: 1 });
-  await delay(100);
+    if (cardID !== 0) {
+      display.setText(cardID.author, { line: 0 });
+
+      display.setText(cardID.title, { line: 1 });
+      await delay(100);
+    } else {
+      allOff();
+    }
+  }
 }
 
 async function allOff() {
@@ -40,4 +41,3 @@ async function allOff() {
   }
   await delay(100);
 }
-
