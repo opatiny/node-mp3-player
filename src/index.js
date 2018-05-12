@@ -18,8 +18,8 @@ const appendToPlayList = require('./util/appendToPlayList');
 const CardReader = require('./i2c/cardReader');
 const Display = require('./i2c/display');
 const updateCard = require('./util/updateCard');
-const exec = require('child_process').exec; // library that allows to execute ba
-sh
+const exec = require('child_process').exec; // library that allows to execute bash
+
 
 // creating new instances of MPlayer and I2C
 const mplayer = new MPlayer();
@@ -72,7 +72,8 @@ async function start() {
         */
       }
 
-      if (context.cardReaderStatus.card==='ffffffff') {
+      if (context.lastAddedCard==='ffffffff') {
+        context.display.allOff();
         exec('shutdown -h now');
       }      
 
