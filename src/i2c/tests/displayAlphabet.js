@@ -1,4 +1,4 @@
-// test ledDisplay: display alphabet on more thatn one line
+// test ledDisplay: display alphabet on more that one line
 
 'use strict';
 
