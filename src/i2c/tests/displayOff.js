@@ -19,5 +19,4 @@ async function allOff() {
   }
 }
 
-display.setText('ABCDEFGHIJKL');
 
