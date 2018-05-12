@@ -14,7 +14,6 @@ const toc = require('./util/loadTOC');
 const appendInfo = require('./util/appendInfo');
 const updateDisplay = require('./util/updateDisplay');
 const showTime = require('./util/showTime');
-const showInfo = require('./util/showInfo');
 const appendToPlayList = require('./util/appendToPlayList');
 const CardReader = require('./i2c/cardReader');
 const Display = require('./i2c/display');
@@ -54,19 +53,20 @@ async function start() {
 
       while (context.item && context.item.mplayer) {
         await showTime(context);
-        await showInfo(context);
         await updateCard(context);
         await appendToPlayList(context);
         await updateDisplay(context);
         await delay(1000);
 
         // possibly we could cancel or go to next song
+        /*
         if (Math.random() < 0.2) {
           debug('STOP to test');
           await context.item.stop();
         } else {
           debug('NOT STOPPED');
         }
+        */
       }
     } else {
       await updateCard(context);
