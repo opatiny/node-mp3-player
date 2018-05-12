@@ -11,10 +11,12 @@ const toc = require('..//loadTOC');
 const Display = require('../../i2c/display.js');
 const CardReader = require('../../i2c/cardReader');
 
+const cardReader = new CardReader(i2c); // new cardReader instance
 const display = new Display(i2c);
 
+
 while (true) {
-  if (CardReader.status.card !== 0) {
+  if (cardReader.status.card !== 0) {
     displayInfo();
   } else {
     allOff();
@@ -22,7 +24,7 @@ while (true) {
 }
 
 async function displayInfo() {
-  var cardID = toc[CardReader.status.card];
+  var cardID = toc[cardReader.status.card];
 
   display.setIntensity(200);
 
