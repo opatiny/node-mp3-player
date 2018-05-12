@@ -1,25 +1,4 @@
-# node-mp3-player
-
-  [![NPM version][npm-image]][npm-url]
-  [![build status][travis-image]][travis-url]
-  [![Test coverage][codecov-image]][codecov-url]
-
-JavaScript program for a steampunk MP3 player.
-
-## Installation
-
-`$ npm install --save node-mp3-player`
-
-## Usage
-
-```js
-import library from 'node-mp3-player';
-
-const result = library(args);
-// result is ...
-```
-
-## [API Documentation](https://opatiny.github.io/node-mp3-player/)
+# Node program for a steampunk MP3 player.
 
 ## License
 
