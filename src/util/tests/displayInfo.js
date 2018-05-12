@@ -7,7 +7,7 @@ const delay = require('delay');
 
 
 // requirering functions
-const toc = require('..//loadTOC');
+const toc = require('../loadTOC');
 const Display = require('../../i2c/display.js');
 const CardReader = require('../../i2c/cardReader');
 
