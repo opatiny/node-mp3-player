@@ -54,8 +54,8 @@ function addDirectory(path, dirname) {
   for (let file of files) {
     toc[key].push({
       file: `${path}/${file}`,
-      author: file.replace(/_-_.*/, '').replace(/_/g, ' '),
-      title: file.replace(/.*_-_/, '').replace(/_/g, ' ').replace(/.mp3$/, '')
+      author: file.replace(/[_ ]-[ _].*/, '').replace(/_/g, ' '),
+      title: file.replace(/.*[_ ]-[_ ]/, '').replace(/_/g, ' ').replace(/.mp3$/, '')
     });
   }
 }
