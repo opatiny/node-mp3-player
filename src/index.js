@@ -44,7 +44,7 @@ async function start() {
     toc, // list of all the files on the disk
     lastAddedCard: '', // id of the card that was added at last
     cardReader: new CardReader(i2c), // new cardReader instance
-    cardInfo: {}, // information about the card
+    cardReaderStatus: {}, // information about the card
     display: new Display(i2c), // new ledDisplay instance
   };
 

@@ -1,7 +1,7 @@
-// pushing cardReader status to cardInfo
+// pushing cardReader status to cardReaderStatus
 
 'use strict';
 
 module.exports = function updateCard(context) {
-  context.cardInfo = context.cardReader.status();
+  context.cardReaderStatus = context.cardReader.status();
 };

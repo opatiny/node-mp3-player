@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = async function appendToPlayList(context) {
-  let card = context.cardInfo.card;
+  let card = context.cardReaderStatus.card;
   if (!card) return;
   if (context.lastAddedCard !== card) { // verify wether card has changed
     context.lastAddedCard = card;
