@@ -16,7 +16,7 @@ append(MP3RF_FOLDER);
 append(MP3_FOLDER);
 
 module.exports = toc;
-debug(toc);
+debug(Object.keys(toc));
 
 function append(path) {
   if (fs.existsSync(path)) { // verifing if path exists

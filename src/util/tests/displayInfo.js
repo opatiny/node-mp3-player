@@ -15,22 +15,24 @@ const CardReader = require('../../i2c/cardReader');
 const cardReader = new CardReader(i2c); // new cardReader instance
 const display = new Display(i2c);
 
+
+
 displayInfo();
 
 async function displayInfo() {
-  var cardID = cardReader.status().card;
-  display.setIntensity(200);
-
   while (true) {
+    let cardID = cardReader.status().card;
+    display.setIntensity(200);
+
     debug('cardID:  ', cardID);
-
-    if (cardID !== 0) {
-      display.setText(toc[cardID][0].author, { line: 0 });
-
-      display.setText(toc[cardID][0].title, { line: 1 });
+    let cardIDCode = cardID.replace('-','');
+    if (toc[cardIDCode]) {
+      display.setText(toc[cardIDCode][0].author.padEnd(12), { line: 0 });
+      display.setText(toc[cardIDCode][0].title.padEnd(12), { line: 1 });
       await delay(100);
     } else {
-      display.allOff();
+      display.setText(cardID.padEnd(12), {line:0});
+      display.off(1);
     }
   }
 }

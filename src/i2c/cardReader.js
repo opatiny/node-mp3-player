@@ -10,12 +10,13 @@ const ADDRESS = 8;
 
 // define CardReader object
 function CardReader(bus) { // to create new CardReader instance you need to call an I2C bus
-  debug('This of cardReader', this);
+  debug('Initialization of card reader');
   this.bus = bus;
 }
 
 // push I2C parameters to CardReader.prototype.status, status is a function common to all CardReader instances
 CardReader.prototype.status = function () {
+  debug('get status of card reader');
   // require cardReader parameters through I2C
   let luminosity = this.bus.readWordSync(ADDRESS, 0);
   let temperature = this.bus.readWordSync(ADDRESS, 1);
@@ -25,6 +26,7 @@ CardReader.prototype.status = function () {
   card = card.toString(16); // create a string in base 16
   card = card.padStart(8, '0'); // fill with '0' in front if not 8 characters
   card = `${card.substr(0, 4)}-${card.substr(4, 4)}`; // four numbers then - then four other numbers
+  debug('status of card reader',luminosity, temperature, switchState, card);
   return {
     luminosity,
     temperature,
