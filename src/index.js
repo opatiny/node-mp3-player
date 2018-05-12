@@ -41,7 +41,7 @@ async function start() {
     item: {}, // pointer to the current mplayer item playing
     info: {}, // extracted info from the mp3
     toc, // list of all the files on the disk
-    lastAddedCard: '', // id of the card that was added at last
+    lastAddedCard: '00000000', // id of the card that was added at last
     cardReader: new CardReader(i2c), // new cardReader instance
     cardReaderStatus: {}, // information about the card
     display: new Display(i2c), // new ledDisplay instance
