@@ -3,7 +3,13 @@
 'use strict';
 
 module.exports = function showInfo(context) {
+  const display = context.display;
   if (context.info) {
-    console.log(context.info.artist, context.info.title, context.info.length);
+    display.setText(context.currentMusic.author.pad(12), { line: 0 });
+
+    display.setText(context.currentMusic.title.pad(12), { line: 1 });
+  } else {
+    display.allOff();
   }
 };
+
