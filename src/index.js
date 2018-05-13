@@ -20,7 +20,9 @@ const updateCard = require('./util/updateCard');
 
 const exec = require('child_process').exec; // library that allows to execute bash
 
-await loopForEver();
+var i2c;
+
+loopForEver();
 
 async function loopForEver() {
   while(true) {
@@ -29,7 +31,6 @@ async function loopForEver() {
     const I2C = require('i2c-bus');
 
     // connecting on I2C bus 1
-    var i2c;
     try {
       i2c = I2C.openSync(1); // Synchronous open (not a promise). Returns a new Bus object.
     } catch (e) {
