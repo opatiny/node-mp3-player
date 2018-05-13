@@ -53,6 +53,7 @@ function addDirectory(path, dirname) {
   let files = fs.readdirSync(path);
   for (let file of files) {
     toc[key].push({
+      card: key,
       file: `${path}/${file}`,
       author: file.replace(/[_ ]-[ _].*/, '').replace(/_/g, ' '),
       title: file.replace(/.*[_ ]-[_ ]/, '').replace(/_/g, ' ').replace(/.mp3$/, '')
