@@ -41,6 +41,7 @@ async function loopForEver() {
     }
 
     // initializing
+    // eslint-disable-next-line
     await start().catch((e) => console.log(e));
   }
 }
