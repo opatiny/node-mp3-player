@@ -13,7 +13,6 @@ const {
 const toc = require('./util/loadTOC');
 const appendInfo = require('./util/appendInfo');
 const updateDisplay = require('./util/updateDisplay');
-const showTime = require('./util/showTime');
 const appendToPlayList = require('./util/appendToPlayList');
 const CardReader = require('./i2c/cardReader');
 const Display = require('./i2c/display');
