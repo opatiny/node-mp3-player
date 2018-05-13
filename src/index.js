@@ -18,6 +18,7 @@ const appendToPlayList = require('./util/appendToPlayList');
 const CardReader = require('./i2c/cardReader');
 const Display = require('./i2c/display');
 const updateCard = require('./util/updateCard');
+
 const exec = require('child_process').exec; // library that allows to execute bash
 
 
@@ -47,7 +48,7 @@ async function start() {
     cardReader: new CardReader(i2c), // new cardReader instance
     cardReaderStatus: {}, // information about the card
     display: new Display(i2c), // new ledDisplay instance
-    lastLuminosities: (new Array(10)).fill(500) 
+    lastLuminosities: (new Array(10)).fill(500)
   };
 
   while (true) {
@@ -55,33 +56,21 @@ async function start() {
       appendInfo(context);
 
       while (context.item && context.item.mplayer) {
-        await showTime(context);
         await updateCard(context);
         await appendToPlayList(context);
         await updateDisplay(context);
         await delay(1000);
-
-        // possibly we could cancel or go to next song
-        /*
-        if (Math.random() < 0.2) {
-          debug('STOP to test');
-          await context.item.stop();
-        } else {
-          debug('NOT STOPPED');
-        }
-        */
       }
 
-      if (context.lastAddedCard==='ffffffff') {
+      if (context.lastAddedCard === 'ffffffff' && context.currentMusic.card === 'ffffffff') {
         context.display.allOff();
         exec('shutdown -h now');
-      }      
-
+      }
     } else {
       await updateCard(context);
       await appendToPlayList(context);
       await updateDisplay(context);
-      await delay(1000);
+      await delay(500);
     }
   }
 }
@@ -93,7 +82,6 @@ async function playNextSong(context) {
   context.currentMusic = context.playlist.shift();
   debug('Playing', context.currentMusic.file);
   context.item = await mplayer.openFile(context.currentMusic.file);
-  debug('-------------------------------');
 
   return true;
 }
