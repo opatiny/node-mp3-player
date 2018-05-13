@@ -20,15 +20,16 @@ const updateCard = require('./util/updateCard');
 
 const exec = require('child_process').exec; // library that allows to execute bash
 
+const I2C = require('i2c-bus');
 var i2c;
+var mplayer;
 
 loopForEver();
 
 async function loopForEver() {
   while(true) {
     // creating new instances of MPlayer and I2C
-    const mplayer = new MPlayer();
-    const I2C = require('i2c-bus');
+    mplayer = new MPlayer();
 
     // connecting on I2C bus 1
     try {
