@@ -10,9 +10,9 @@ const Display = require('../display.js');
 
 const display = new Display(i2c);
 
-allOff();
+clear();
 
-async function allOff() {
+async function clear() {
   for (let line = 0; line < 3; line++) {
     display.off(line);
     await delay(100);

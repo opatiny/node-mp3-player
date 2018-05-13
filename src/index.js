@@ -21,6 +21,7 @@ const updateCard = require('./util/updateCard');
 const exec = require('child_process').exec; // library that allows to execute bash
 
 const I2C = require('i2c-bus');
+
 var i2c;
 var mplayer;
 var shouldContinue = true;
@@ -28,7 +29,7 @@ var shouldContinue = true;
 loopForEver();
 
 async function loopForEver() {
-  while(shouldContinue) {
+  while (shouldContinue) {
     // creating new instances of MPlayer and I2C
     mplayer = new MPlayer();
 
@@ -40,7 +41,7 @@ async function loopForEver() {
     }
 
     // initializing
-    await start().catch(e => console.log(e));
+    await start().catch((e) => console.log(e));
   }
 }
 
@@ -71,10 +72,10 @@ async function start() {
       }
       debug('lastAddedCard', context.lastAddedCard, 'currentMusicCard', context.currentMusic.card);
       if (context.lastAddedCard === 'ffffffff' && context.currentMusic.card === 'ffffffff') {
-        context.display.allOff();
+        context.display.clear();
         await delay(1000);
         exec('shutdown -h now');
-        shouldContinue=false;
+        shouldContinue = false;
         return;
       }
     } else {

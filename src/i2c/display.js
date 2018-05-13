@@ -43,13 +43,6 @@ Display.prototype.off = function (line = 0) {
   }
 };
 
-Display.prototype.allOff = function () {
-  for (let line = 0; line < 3; line++) {
-    this.off(line);
-  }
-};
-
-
 Display.prototype.setText = function (text, options = {}) {
   let {
     line = 0,
