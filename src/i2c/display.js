@@ -1,4 +1,4 @@
-// define display and function to write text easily
+// define display object and functions to write text easily
 
 'use strict';
 

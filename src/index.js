@@ -58,7 +58,7 @@ async function start() {
         await updateCard(context);
         await appendToPlayList(context);
         await updateDisplay(context);
-        await delay(1000);
+        await delay(800);
       }
       debug('lastAddedCard', context.lastAddedCard, 'currentMusicCard', context.currentMusic.card);
       if (context.lastAddedCard === 'ffffffff' && context.currentMusic.card === 'ffffffff') {
@@ -82,6 +82,7 @@ async function playNextSong(context) {
 
   context.currentMusic = context.playlist.shift();
   debug('Playing', context.currentMusic.file);
+  await delay(200);
   context.item = await mplayer.openFile(context.currentMusic.file);
 
   return true;
