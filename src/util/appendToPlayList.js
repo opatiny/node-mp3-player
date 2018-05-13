@@ -1,6 +1,7 @@
 'use strict';
 
 const debug = require('debug')('util:appendToPlayList'); // debug library
+const delay = require('delay'); // for delays (async)
 
 module.exports = async function appendToPlayList(context) {
   let card = context.cardReaderStatus.card.replace('-', '');
@@ -16,6 +17,7 @@ module.exports = async function appendToPlayList(context) {
     if (context.cardReaderStatus.switchState===2 || context.cardReaderStatus.switchState===3 ) {
       if (context.item && context.item.stop) {
         await context.item.stop();
+        await delay(100);
       }
       context.playlist = [];
     }
