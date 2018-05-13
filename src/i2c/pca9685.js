@@ -1,4 +1,4 @@
-// works as library for pca9685, based on the component datasheet (https://cdn-shop.adafruit.com/datasheets/PCA9685.pdf)
+// works as library for pca9685, based on the component datasheet (https://cdn-shop.adafruit.com/datasheets/PCA9685.pdf) and the pca9685 library (https://www.npmjs.com/package/pca9685)
 
 'use strict';
 
