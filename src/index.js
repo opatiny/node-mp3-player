@@ -20,21 +20,27 @@ const updateCard = require('./util/updateCard');
 
 const exec = require('child_process').exec; // library that allows to execute bash
 
+await loopForEver();
 
-// creating new instances of MPlayer and I2C
-const mplayer = new MPlayer();
-const I2C = require('i2c-bus');
+async function loopForEver() {
+  while(true) {
+    // creating new instances of MPlayer and I2C
+    const mplayer = new MPlayer();
+    const I2C = require('i2c-bus');
 
-// connecting on I2C bus 1
-var i2c;
-try {
-  i2c = I2C.openSync(1); // Synchronous open (not a promise). Returns a new Bus object.
-} catch (e) {
-  debug('i2c bus error', e.toString());
+    // connecting on I2C bus 1
+    var i2c;
+    try {
+      i2c = I2C.openSync(1); // Synchronous open (not a promise). Returns a new Bus object.
+    } catch (e) {
+      debug('i2c bus error', e.toString());
+    }
+
+    // initializing
+    await start().catch(e => console.log(e));
+  }
 }
 
-// initializing
-start();
 
 async function start() {
   const context = {
