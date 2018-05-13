@@ -60,7 +60,7 @@ async function start() {
         await updateDisplay(context);
         await delay(1000);
       }
-
+      debug('lastAddedCard', context.lastAddedCard, 'currentMusicCard', context.currentMusic.card);
       if (context.lastAddedCard === 'ffffffff' && context.currentMusic.card === 'ffffffff') {
         context.display.allOff();
         exec('shutdown -h now');

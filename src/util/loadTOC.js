@@ -38,6 +38,7 @@ function addFile(path, file) {
 
   toc[key] = [
     {
+      card: key,
       file: `${path}/${file}`,
       author: realFile.replace(/[_ ]-[_ ].*/, '').replace(/_/g, ' '),
       title: realFile.replace(/.*[_ ]-[_ ]/, '').replace(/_/g, ' ').replace(/.mp3$/, '')
