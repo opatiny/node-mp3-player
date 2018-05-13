@@ -23,11 +23,12 @@ const exec = require('child_process').exec; // library that allows to execute ba
 const I2C = require('i2c-bus');
 var i2c;
 var mplayer;
+var shouldContinue = true;
 
 loopForEver();
 
 async function loopForEver() {
-  while(true) {
+  while(shouldContinue) {
     // creating new instances of MPlayer and I2C
     mplayer = new MPlayer();
 
@@ -73,6 +74,7 @@ async function start() {
         context.display.allOff();
         await delay(1000);
         exec('shutdown -h now');
+        shouldContinue=false;
         return;
       }
     } else {
