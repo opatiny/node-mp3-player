@@ -63,7 +63,9 @@ async function start() {
       debug('lastAddedCard', context.lastAddedCard, 'currentMusicCard', context.currentMusic.card);
       if (context.lastAddedCard === 'ffffffff' && context.currentMusic.card === 'ffffffff') {
         context.display.allOff();
+        await delay(1000);
         exec('shutdown -h now');
+        return;
       }
     } else {
       await updateCard(context);
